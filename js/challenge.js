@@ -15,21 +15,11 @@ let count = parseInt(counter.innerText, 10)
 function incrementCounter() {
     count++;
     counter.innerHTML = count;
-    displayLikes();
 }
 
 function decrementCounter() {
     count--;
     counter.innerHTML = count;
-    displayLikes();
-}
-
-function displayLikes() {
-    if (likes[count] > 0) {
-        likesElement.textContent = likes[count]
-    } else {
-        likesElement.textContent = 0
-    }
 }
 
 function setCounter() {
@@ -64,6 +54,17 @@ function addLike(){
         likes[count] = 1;
     }
     displayLikes();
+}
+
+function displayLikes() {
+    likesElement.innerHTML = ""
+    for (i = 0; i < likes.length; i++){
+        if (likes[i]) {
+            const newLike = document.createElement("li")  
+            newLike.textContent = `${i} has ${likes[i]} likes`
+            likesElement.appendChild(newLike)
+        }
+    }
 }
 
 function createComment(event){
